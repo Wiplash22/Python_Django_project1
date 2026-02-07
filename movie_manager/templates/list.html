@@ -1,0 +1,26 @@
+{% extends 'blank_layout.html' %}
+{% load static %}
+{% block content %}
+<h1>List of movies {{visits}} times visited</h1>
+<table>
+    <tr>
+        <th>Title</th>
+        <th>Director</th>
+        <th>edit/delete</th>
+    </tr>
+{% for obj in movies %}
+
+    <tr>
+        <td>
+            <h1>{{obj.title}}</h1>
+            <br>
+            {% if obj.poster %}
+                <img src="{{ obj.poster.url}}" alt="{{obj.title}}" width="100"/>
+            {% endif %}
+        </td>
+        <td><h4>{{obj.director}}</h4></td>
+        <td><a href="{% url 'edit' obj.id %}">edit</a>/<a href="{% url 'delete' obj.id %}">delete</a></td>
+    </tr>
+{% endfor %}
+</table>
+{% endblock content %}
